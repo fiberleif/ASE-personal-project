@@ -1,0 +1,41 @@
+Report on ASE_homework1
+Task 1: large_integer_arithmetic_library
+Create a new class named Bigint to store the large_integer, which has two central private member:
+Std::vector<int> bigint_vector_ (store the decimal value)
+bool sign (store the sign)
+Then we overload the operator”+, -, *, /” to execute the large_integer arithmetic. 
+Addition operator: 
+Firstly add by digit, then deal with the Carry from low digit to high digit. 
+Subtraction operator: 
+Firstly compare the size of the subtractor subtractor, sign depends on the result of comparing, then we subtract the larger one by the smaller one by digit, finally we deal with 
+the Borrow from low digit to high digit. 
+Multiplication operator:
+Firstly multiply by digit,then deal with the Carry from low digit to high digit. 
+Division operator:
+If the dividend is larger than divisor,then we subtract the dividend by divisor(quotient++ together) until the dividend
+is smaller than divisor,the final dividend is remainer.
+ 
+Task 2:Prime sieve
+The original algorithm:
+While(prime_size != MaxPrime)
+{   bool flag = true;
+for(int i=2; i < sqrt(number) ;i++)
+{		If((number % i) == 0 )
+    	{ flag = fause; break;}
+}
+number++;
+If(flag == true)
+{	prime_size++;  }
+}
+Some optimal point:
+1.	When we judge whether number is a prime, we use all the i which is under sqrt(number) to mod number, if we find divisibility, we draw a conclusion
+that the number is not prime, otherwise number is prime. But actually we can reduce the mod frequency,
+for example: we can assume i is odd… in our new algorithm, we just traverse the prime in the container
+before which is under the sqrt(number) to reduce the mod frequency.
+2.	number++ -> number = number + 2, the only prime which is also even number is 2.
+
+here is the comparative data between two algorithm:
+|Prime_size| orignal time cost | new time cost |
+|10000     | 0.036s            |  0.046000s    |
+|100000    | 0.987000S         |  0.259000s    |
+|1000000   | 31.115000         |  4.747000s    |
